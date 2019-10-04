@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="row" style="margin-top: 3vw;">
+    <h2 class="col-md-2">Usuarios</h2>
+    <button type="button" class="btn" [routerLink]="['/add-user']">
+      Añadir usuario
+    </button>
+    
+      <button (click)="singOut()" type="button" class="btn offset-md-7">
+        Cerrar sesion
+      </button>
+  </div>
+
+  <div class="row">
+    <div *ngFor="let user of listUsers" class="card">
+      <img class="card-img-top" src="{{user.avatar}}" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">{{user.first_name}} {{user.last_name}}</h5>
+        <p class="card-text">{{user.email}}</p>
+        <a href="#" [routerLink]="['/user-details', user.id]" class="btn btn-primary">Ver usuario</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row col-md-4 offset-md-9">
+     <pagination class="pag d-flex justify-content-center" [totalItems]="20" [(ngModel)]="numberPage"
+      (pageChanged)="pageChanged($event)"></pagination>
+  </div>
+
+</div>
+
+<style>
+  .container {
+    background: #222831;
+  }
+
+  .btn {
+    background-color: #00adb5;
+    color: #eeeeee;
+  }
+
+  .card {
+    width: 15rem;
+    background: #393e46;
+    color: #eeeeee;
+    margin: auto;
+    margin-top: 5rem;
+  }
+  .pag{
+    margin-top: 10%;
+  }
+  
+</style>
